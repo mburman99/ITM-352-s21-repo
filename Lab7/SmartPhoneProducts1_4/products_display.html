@@ -24,6 +24,7 @@ spins_span.innerHTML = spins;">
   <script>
     var first_name= 'Max';
     var last_name= 'Burman';
+    var over_half = false;
    document.write(
        "<b>" + first_name + "</b><i> " + last_name + "</i>'s"
    );
@@ -34,6 +35,7 @@ spins_span.innerHTML = spins;">
         Hits:<span id="hits_span">0</span>
         Spins:<span id="spins_span">0</span>
         Hit/Spin:<span id="hit_spin_span">0</span>
+        You win:<span id="win_span">pending...</span>
         </p>
     <div><main>
         <input id='speedSlider' type='range' min=".1" max="5" step=".1" style="direction: rtl;"onchange="localStyle.innerHTML = '.rotate img {animation-duration: ' + speedSlider.value + 's;}';">
@@ -41,11 +43,17 @@ spins_span.innerHTML = spins;">
     onmouseover="
     ++spins;
     spins_span.innerHTML = spins; this.className = 'item rotate';
-    hit_spin_span.innerHTML = (hits_span.innerHTML/spins_span.innerHTML).toFixed(2);" 
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;
+    " 
     onclick="
     hits+= 2;
     hits_span.innerHTML = hits;
-    spins_span.innerHTML = spins;this.className='item';">
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
+    spins_span.innerHTML = spins;this.className='item';
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;">
         <h2>HTC</h2>
         <p>$40.00</p>
         <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/HTC.jpg">
@@ -53,10 +61,15 @@ spins_span.innerHTML = spins;">
     <section class="item"id="Apple" onmouseover="
     spins++;
     spins_span.innerHTML = spins; this.className = 'item rotate';
-    hit_spin_span.innerHTML = (hits_span.innerHTML/spins_span.innerHTML).toFixed(2);" 
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half" 
     onclick="
     hits++;
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;
     hits_span.innerHTML = hits;
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
     spins_span.innerHTML = spins;this.className='item';">
         <h2>Apple</h2>
         <p>$75.00</p>
@@ -66,10 +79,15 @@ spins_span.innerHTML = spins;">
     onmouseover="
     spins = spins + 1;
     spins_span.innerHTML = spins; this.className = 'item rotate';
-    hit_spin_span.innerHTML = (hits_span.innerHTML/spins_span.innerHTML).toFixed(2);" 
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;" 
     onclick="
     hits = hits + 1;
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;
     hits_span.innerHTML = hits;
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
     spins_span.innerHTML = spins;this.className='item';">
         <h2>Nokia</h2>
         <p>$35.00</p>
@@ -79,10 +97,15 @@ spins_span.innerHTML = spins;">
     onmouseover="
     spins = spins + 1;
     spins_span.innerHTML = spins; this.className = 'item rotate';
-    hit_spin_span.innerHTML = (hits_span.innerHTML/spins_span.innerHTML).toFixed(2);" 
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;" 
     onclick="
     hits = hits + 1;
     hits_span.innerHTML = hits;
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;
     spins_span.innerHTML = spins;this.className='item';">
         <h2>Samsung</h2>
         <p>$45.00</p>
@@ -92,10 +115,15 @@ spins_span.innerHTML = spins;">
     onmouseover="
     spins = spins +1;
     spins_span.innerHTML = spins; this.className = 'item rotate';
-    hit_spin_span.innerHTML = (hits_span.innerHTML/spins_span.innerHTML).toFixed(2);" 
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;" 
     onclick="
     hits = hits + 1;
+    over_half ||= ((hits/spins>= 0.5) && hits < spins);
+    win_span.innerHTML = over_half;
     hits_span.innerHTML = hits;
+    hit_spin_span.innerHTML = (hits/spins).toFixed(2);
     spins_span.innerHTML = spins;this.className='item';">
         <h2>Blackberry</h2>
         <p>$10.00</p>
