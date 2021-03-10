@@ -20,29 +20,9 @@
      var item5 = 'Colgate Classic Toothbrush';
      var quantity5 = 12;
      var price5 = 1.89; 
-     //compute extended price
-     var extended_price1 = quantity1*price1;
-     var extended_price2 = quantity2*price2;
-     var extended_price3 = quantity3*price3;
-     var extended_price4 = quantity4*price4;
-     var extended_price5 = quantity5*price5;
-     // compute subtotal
-     var subtotal = extended_price1+extended_price2+extended_price3+extended_price4+extended_price5;
-     // compute tax
-     var tax_rate = 0.0575;
-     var tax = tax_rate*subtotal
-     // Compute shipping
-     if(subtotal <= 50){
-       shipping = 2;
-     }
-     else if (subtotal <= 100){
-       shipping = 5;
-     }
-     else {
-       shipping = 0.05*subtotal;
-     }
-     // compute total
-     var total = subtotal+tax+shipping;
+     // Subtotal
+     var subtotal = 0;
+    
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,50 +43,77 @@
           </tr>
           <script> 
           // Product 1
+          var extended_price = quantity1*price1;
+          var subtotal = extended_price + subtotal;
           document.write(`
           <tr>
             <td width="43%">${item1}</td>
             <td align="center" width="11%">${quantity1}</td>
             <td width="13%">$${price1}</td>
-            <td width="54%">$${extended_price1}</td>
+            <td width="54%">$${extended_price}</td>
           </tr>
           `)
           // Product 2
+          var extended_price = quantity2*price2;
+          var subtotal = extended_price + subtotal;
           document.write (`
           <tr>
             <td width="43%">${item2}</td>
             <td align="center" width="11%">${quantity2}</td>
             <td width="13%">$${price2}</td>
-            <td width="54%">$${extended_price2}</td>
+            <td width="54%">$${extended_price}</td>
           </tr>
           `)
           // Product 3
+          var extended_price = quantity3*price3;
+          var subtotal = extended_price + subtotal;
           document.write(`
           <tr>
             <td width="43%">${item3}</td>
             <td align="center" width="11%">${quantity3}</td>
             <td width="13%">$${price3}</td>
-            <td width="54%">$${extended_price3}</td>
+            <td width="54%">$${extended_price}</td>
           </tr>
           `)
           // Product 4
+          var extended_price = quantity4*price4;
+          var subtotal = extended_price + subtotal;
           document.write(`
           <tr>
             <td width="43%">${item4}</td>
             <td align="center" width="11%">${quantity4}</td>
             <td width="13%">$${price4}</td>
-            <td width="54%">$${extended_price4}</td>
+            <td width="54%">$${extended_price}</td>
           </tr>
           `)
           // Product 5
+          var extended_price = quantity5*price5;
+          var subtotal = extended_price + subtotal;
           document.write(`
           <tr>
             <td width="43%">${item5}</td>
             <td align="center" width="11%">${quantity5}</td>
             <td width="13%">$${price5}</td>
-            <td width="54%">$${extended_price5}</td>
+            <td width="54%">$${extended_price}</td>
           </tr>
           `)
+</script>
+<script>
+   // compute tax
+   var tax_rate = 0.0575;
+     var tax = tax_rate*subtotal
+     // Compute shipping
+     if(subtotal <= 50){
+       shipping = 2;
+     }
+     else if (subtotal <= 100){
+       shipping = 5;
+     }
+     else {
+       shipping = 0.05*subtotal;
+     }
+     // compute total
+     var total = subtotal+tax+shipping;
 </script>
           <tr>
             <td colspan="4" width="100%">&nbsp;</td>
