@@ -20,9 +20,8 @@
      var item5 = 'Colgate Classic Toothbrush';
      var quantity5 = 12;
      var price5 = 1.89; 
-     // Subtotal
-     var subtotal = 0;
-    
+    // subtotal
+      var subtotal = 0;
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,21 +98,21 @@
           `)
 </script>
 <script>
-   // compute tax
-   var tax_rate = 0.0575;
-     var tax = tax_rate*subtotal
-     // Compute shipping
-     if(subtotal <= 50){
-       shipping = 2;
-     }
-     else if (subtotal <= 100){
-       shipping = 5;
-     }
-     else {
-       shipping = 0.05*subtotal;
-     }
-     // compute total
-     var total = subtotal+tax+shipping;
+// compute tax
+var tax_rate = 0.0575;
+var tax = tax_rate*subtotal
+// Compute shipping
+if(subtotal <= 50){
+  shipping = 2;
+}
+else if (subtotal <= 100){
+  shipping = 5;
+}
+else {
+  shipping = 0.05*subtotal;
+}
+// compute total
+var total = subtotal+tax+shipping;
 </script>
           <tr>
             <td colspan="4" width="100%">&nbsp;</td>
