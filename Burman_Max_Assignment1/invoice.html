@@ -1,0 +1,145 @@
+<script src="products.js"> </script>
+<script>
+  var params = (new URL(document.location)).searchParams;
+
+  // check if the quantities are valid and if not send them back to products display, I got some help from the professor on this.
+  var has_errors = false;
+  for (i in products) {
+    qty_small = params.get(`quantity_small${i}`);
+    qty_medium = params.get(`quantity_medium${i}`);
+    qty_large = params.get(`quantity_large${i}`);
+    has_errors = has_errors || !isNonNegInt(qty_small) || !isNonNegInt(qty_medium) || !isNonNegInt(qty_large);
+  }
+  // this is to display an message if there are invalid quantities to make an alert that says that there are invalid quantities
+  if (has_errors) {
+    alert("Hey you have invalid quantities");
+    location.href="./products_display.html" + location.search;
+  }
+ 
+  function isNonNegInt(q, return_errors = false) {
+    // this is to check is th values that are put in the textbox are valid or not, to see if it is a number, positive and also if it is a whol number
+    errors = [];// this assumes that there are no errors to begin with
+    if (q == '') q = 0; // this makes that if there is no value put in for a quantity then the value is 0 
+    if (Number(q) != q) errors.push('<font color="red">Not a Number</font>')// this checks if the input value is a number or not
+    else if (q < 0) errors.push('<font color="red">Negative Quantity</font>') // this checks if the value put in is a positiv or negative number
+    else if (parseInt(q) != q) errors.push('<font color="red">Not a Full Value</font>') // this checks if the value put for quantity is a full value or not stopping someone from puttig decimals in the quantity
+    return return_errors ? errors : (errors.length == 0);
+  }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style_3.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <table border="2" class="center">
+    <tbody>
+      <tr>
+        <th style="text-align: center;" width="25%">Item</th>
+        <th style="text-align: center;" width="11%">quantity</th>
+        <th style="text-align: center;" width="25%">price</th>
+        <th style="text-align: center;" width="20%">extended price</th>
+      </tr>
+      <script>
+        // here i am displaying the invoice with the products with small medium and large sizes, i have a loop that makes it only put up where quantities are entered and not put up products where there are 0 quantities of. 
+        subtotal = 0;
+        for (i in products) {
+          if(params.get(`quantity_small${i}`)>0){
+      extended_price_small = params.get(`quantity_small${i}`) * products[i].price;
+      subtotal += extended_price_small;
+      // this is for quantities in the small size
+      document.write(`
+              <tr>
+                <td width="43%">Small ${products[i].item}</td>
+                <td align="center" width="11%"> ${params.get(`quantity_small${i}`)}</td>
+                <td width="13%"> $${products[i].price}</td>
+                <td width="54%"> $${extended_price_small}</td>
+              </tr>
+              `);
+            }
+              if(params.get(`quantity_medium${i}`)>0){
+              extended_price_medium = params.get(`quantity_medium${i}`) * products[i].price;
+              subtotal += extended_price_medium;
+              document.write(`
+              <tr>
+                <td width="43%">Medium ${products[i].item}</td>
+                <td align="center" width="11%"> ${params.get(`quantity_medium${i}`)}</td>
+                <td width="13%"> $${products[i].price}</td>
+                <td width="54%"> $${extended_price_medium}</td>
+              </tr>
+              `);
+              // this is for the quantities in the medium size
+            }
+            if(params.get(`quantity_large${i}`)>0){
+              extended_price_large = params.get(`quantity_large${i}`) * products[i].price;
+              subtotal += extended_price_large;
+              document.write(`
+              <tr>
+                <td width="43%">Large ${products[i].item}</td>
+                <td align="center" width="11%"> ${params.get(`quantity_large${i}`)}</td>
+                <td width="13%"> $${products[i].price}</td>
+                <td width="54%"> $${extended_price_large}</td>
+              </tr>
+              `);
+              // this if for the quantities in the large size
+            }
+    }
+      </script>
+      <script>
+        // this code is similar to what we did in invoice 4 and i modified it a bit to fit for the clothing store better
+        // compute tax
+        var tax_rate = 0.04; // 4% is the sales tax in hawaii 
+        var tax = tax_rate * subtotal
+        // Compute shipping
+        if (subtotal <= 25) {
+          shipping = 2;
+        }
+        else if (subtotal <= 50) {
+          shipping = 5;
+        }
+        else {
+          shipping = 0.05 * subtotal;
+        }
+        // compute total 
+        var total = subtotal + tax + shipping;
+        //this is copied from the invoice wod, I have modified it a little bit, below is to print out the subtotal, the tax, the shipping and the total price
+      </script>
+      <tr>
+        <td colspan="4" width="100%">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
+        <td width="54%">$
+          <script>document.write(subtotal)</script>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @ 4%</span>
+        </td>
+        <td width="54%">$
+          <script>document.write(tax.toFixed(2))</script>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Shipping</span></td>
+        <td width="54%">$
+          <script>document.write(shipping.toFixed(2))</script>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
+        <td width="54%"><strong>$
+            <script>document.write(total.toFixed(2))</script>
+          </strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>
+    Thank you for shopping at Max's T-shirt shop!
+  </h2>

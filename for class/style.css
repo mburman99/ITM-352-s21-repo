@@ -1,0 +1,35 @@
+/* Typography */
+h1 {
+    color:darkslategray;
+    font-family: 'Open sans' sans;
+}
+h2 {
+    font-size: medium;
+}
+/* General */
+body {
+    background-color:burlywood;
+    font-size: small;
+    font-family: 'Open sans', sans;
+    color: darkslategrey;
+    width: 800px;
+    margin: auto;
+}
+/* Block Styling */
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+/* Styling the products display */ 
+img {
+    width: 200px;
+    height: 200px;
+}
+/* Form Styling */
+div {
+    border: 2px solid black;
+    background-color: beige;
+}
