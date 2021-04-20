@@ -1,0 +1,34 @@
+/* this is my stylesheet for the products display */
+/* Typography */
+
+h1, h2 {
+    text-align: center;
+    font-family: 'Open Sans', sans;
+    color: white;
+}
+
+/* General */
+
+body {
+    background: url(Images/backgroundpicture.jpg);
+    width: 800px;
+    margin: 0 auto;
+    color:white;
+}
+/* Block Styling */
+main {
+    display: flex;
+flex-flow: row wrap;
+justify-content: space-around;
+}
+/* Form Styling */
+div {
+    border: 0px;
+    display: flex;
+    background-color:black;
+}
+/* Styling the products display */ 
+img {
+    width: 200px;
+    height: 200px;
+}

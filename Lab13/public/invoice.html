@@ -1,0 +1,9 @@
+<script>
+    var params = (new URL(document.location)).searchParams;
+    if (params.has('quantity_textbok')) {
+        the_qty = params.get('quantity_textbok');
+        document.write(`Thank you for purchasing ${the_qty} items!`)
+       } else {
+           document.write(`No quantities`);
+       }
+</script>
