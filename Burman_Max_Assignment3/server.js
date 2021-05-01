@@ -6,37 +6,6 @@ app.use(myParser.urlencoded({ extended: true }));
 var qs = require('qs');
 var fs = require('fs');
 const { response, request } = require('express');
-var cookieParser = require('cookie-parser');
-app.use(cookieParser());
-var session = require('express-session');
-
-app.use(session({secret: "ITM352 rocks!"}));
-
-// play with sessions
-app.get('/set_session', function (req, res, next){
-    res.send(`welcome, your session ID is ${req.session.id}`);
-    next();
-});
-
-// play with cookies
-app.get('/set_cookie', function (req, res, next){
-    // console.log(req.cookies);
-    let my_name = 'Max Burman';
-    res.clearCookie('my_name');
-    res.cookie('my_name', my_name, {maxAge: 5000});
-    res.send(`Cookie for ${my_name} sent`);
-    next();
-});
-
-app.get('/use_cookie', function (req, res, next){
-    console.log(req.cookies);
-    if(typeof req.cookies["my_name"] != 'undefined'){
-    res.send(`Hello ${req.cookies["my_name"]}`);
-    } else {
-        res.send("I don't know you");
-    }
-    next();
-});
 
 // user_data = require('./user_data.json');
 // read user data base
@@ -50,7 +19,6 @@ if (fs.existsSync(user_data_file)) {
 }
 
 app.all('*', function (req, res, next) {
-    console.log(req);
     console.log(req.method, req.path);
     next();
 });
