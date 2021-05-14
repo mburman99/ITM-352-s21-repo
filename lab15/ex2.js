@@ -20,7 +20,7 @@ app.get('/use_session', function (req, res, next) {
 // Play with cookies
 app.get('/set_cookie', function (req, res, next) {
     // console.log(req.cookies);
-    let my_name = 'Noah Kim';
+    let my_name = 'Max Burman';
     // res.clearCookie('my_name');
     now = new Date();
     res.cookie('my_name', my_name, { expire: 5000 + now.getTime() }); // cookie expires in 5 seconds
@@ -128,3 +128,5 @@ app.post('/process_register', function (request, response, next) {
 app.use(express.static('./static'));
 
 var listener = app.listen(8080, () => { console.log('server started listening on port ' + listener.address().port) });
+
+

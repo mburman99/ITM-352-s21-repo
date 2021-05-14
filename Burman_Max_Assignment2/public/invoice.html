@@ -15,6 +15,12 @@
     alert("Hey you have invalid quantities");
     location.href = "./products_display.html" + location.search;
   }
+   // this makes it so that no user may acess the invoice without logging in
+   if(params.has('username') == false){
+    alert('Please log in first');
+    location.href='./products_display.html';
+    window.stop;
+  }
 
   function isNonNegInt(q, return_errors = false) {
     // this is to check is th values that are put in the textbox are valid or not, to see if it is a number, positive and also if it is a whol number

@@ -1,0 +1,96 @@
+{ 
+    "tshirt": [
+        {
+            "item": "White T-shirt",
+            "price": 10.00,
+            "image": "white-tshirt.jpg"
+        },
+        {
+            "item": "Black T-shirt",
+            "price": 14.00,
+            "image": "black-tshirt.jpg"
+        },
+        {
+            "item": "Graphic White T-shirt",
+            "price": 20.00,
+            "image": "graphicwhite.jpg"
+        },
+        {
+            "item": "Graphic Black T-shirt",
+            "price": 21.00,
+            "image": "graphicblack.jpg"
+        },
+        {
+            "item": "Striped T-shirt",
+            "price": 13.00,
+            "image": "striped.jpg"
+        }
+    ],
+    "bottles": [
+        {
+            "item": "Black Hydro Flask",
+            "price": 30.00,
+            "image": "black-hydro.jpg"
+        },
+        {
+            "item": "Blue Hydro Flask",
+            "price": 35.00,
+            "image": "blue-hydro.jpg"
+        },
+        {
+            "item": "Raibow Hydro Flask",
+            "price": 40.00,
+            "image": "rainbow-hydro.jpg"
+        },
+        {
+            "item": "White Hydro Flask",
+            "price": 10.00,
+            "image": "white-hydro.jpg"
+        }
+    ],
+    "towels": [
+        {
+            "item": "White Towel",
+            "price": 10.00,
+            "image": "white-towel.jpg"
+        },
+        {
+            "item": "Striped Towel",
+            "price": 15.00,
+            "image": "stiped-towel.jpg"
+        },
+        {
+            "item": "Red and Blue Towel",
+            "price": 17.00,
+            "image": "r_b-towel.jpg"
+        },
+        {
+            "item": "Black Towel",
+            "price": 10.00,
+            "image": "black-towel.jpg"
+        }
+    ],
+    "glasses": [
+        {
+            "item": "Round glasses",
+            "price": 35.00,
+            "image": "round_glasses.jpg"
+        },   
+        {
+            "item": "Square glasses",
+            "price": 30.00,
+            "image": "square_glasses.jpg"
+        },
+        {
+            "item": "Round sunglasses",
+            "price": 35.00,
+            "image": "round_sunglasses.jpg"
+        },
+     
+        {
+            "item": "Square sunglasses",
+            "price": 35.00,
+            "image": "square_sunglasses.jpg"
+        }
+    ]
+}

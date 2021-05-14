@@ -1,0 +1,125 @@
+<script src="functions.js"> </script>
+<script>
+    // above I am refrencing my products.json file and using this file to load the different products that I am going to sell and siplay on my website
+    var params = (new URL(document.location)).searchParams;
+    var product_type = params.get("products_key");
+    var products_data;
+    loadJSON('get_products_data', function (response) {
+        // Parsing JSON string into object
+        products_data = JSON.parse(response);
+    });
+    window.onload = function () {
+        loadJSON('get_cart_data', function (response) {
+            // Parsing JSON string into object
+            cart_data = JSON.parse(response);
+        });
+        if (typeof cart_data[product_type] != 'undefined') { //if we have data in our cart for this data then put in in the form
+            for (quant_item in cart_data[product_type]) {
+                for (i in cart_data[product_type][quant_item]) {
+                    products_form[`quantity[${quant_item}][${i}]`].value = cart_data[product_type][quant_item][i];
+                }
+            }
+        }
+    }
+
+
+    var products = products_data[product_type];
+    // this code is similar to lab 12, however I have modified the code to fit for assignment 1 better
+    function isNonNegint(q, return_errors = false) {
+        // this is to check is th values that are put in the textbox are valid or not, to see if it is a number, positive and also if it is a whol number
+        errors = [];// this assumes that there are no errors to begin with
+        if (q == '') q = 0; // this makes that if there is no value put in for a quantity then the value is 0
+        if (Number(q) != q) errors.push('<font color="red">Not a Number</font>')// this checks if the input value is a number or not
+        else if (q < 0) errors.push('<font color="red">Negative Quantity</font>') // this checks if the value put in is a positiv or negative number
+        else if (parseInt(q) != q) errors.push('<font color="red">Not a Full Value</font>') // this checks if the value put for quantity is a full value or not stopping someone from puttig decimals in the quantity
+        return return_errors ? errors : (errors.lenght == 0);
+    }
+
+    function checkQuantitityTextbox(quantitytextbox) { // here we are using the isnonnegint function to check if the values put in are correct or not
+        errs = isNonNegint(quantitytextbox.value, true);
+        document.getElementById(quantitytextbox.name + "_message").innerHTML = errs.join(',');
+
+    }
+    var this_product_key = ''
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max's  Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href=https://fonts.googleapis.com/css?family=Oswald|Open+Sans">
+    <style type="text/css">
+        h1,
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script> nav_bar(this_product_key, products_data);</script>
+    <h1>Welcome to my
+        <script>document.write(product_type.charAt(0).toUpperCase() + product_type.slice(1))</script> shop
+    </h1>
+    <script>
+        // the code below was borrowed from the screencast for assignment 1 
+    </script>
+    <script>
+        // the code below is to open a form that is going to be used to be able to put in quantities, have a button to purchase the selected products, and have textboxes where you can put in quantities and be able to validate these quantities.
+    </script>
+    <form name="products_form" action="./add_to_cart" method="GET">
+        <div>
+            <main>
+                <script>
+                    document.write(`<input type="hidden" name="product_type" value ='${product_type}'`);
+                    // displaying the products from my products.json 
+                    // the labes for the quantity and size was borrowed from the startup on assignment 1 video, the professr helped me a bit with this in combination with the function. this is to display the products, with images and prices. there are also textboxes where the user can put in their own quantities.
+                    for (i in products) {
+                        if (product_type == 'tshirt') {
+                            document.write(`
+        <section class="item">
+        <h2>${products[i].item}</h2>
+        <br><label>Quantity Small</label></br>
+        <input type="text" name="quantity[small][${i}]" placeholder ="0" onkeyup="checkQuantitityTextbox(this);">
+        <span id='quantity_small${i}_message'>Enter a quantity</span>
+        <br><label>Quantity Medium</label></br>
+        <input type="text" name="quantity[medium][${i}]" placeholder ="0" onkeyup="checkQuantitityTextbox(this);">
+        <span id='quantity_medium${i}_message'>Enter a quantity</span>
+        <br><label>Quantity Large</label></br>
+        <input type="text" name="quantity[large][${i}]" placeholder ="0" onkeyup="checkQuantitityTextbox(this);">
+        <span id='quantity_large${i}_message'>Enter a quantity</span>
+        <br><img src=./images/${products[i].image}>
+        <p>$${products[i].price.toFixed(2)}</p>
+    </section>
+        `)
+                        } else {
+                            document.write(`
+        <section class="item">
+        <h2>${products[i].item}</h2>
+        <br><label>Quantity</label></br>
+        <input type="text" name="quantity[any][${i}]" placeholder ="0" onkeyup="checkQuantitityTextbox(this);">
+        <span id='quantity${i}_message'>Enter a quantity</span>
+        <br><img src=./images/${products[i].image}>
+        <p>$${products[i].price.toFixed(2)}</p>
+    </section>
+        `)
+                        }
+
+                    }
+                </script>
+            </main>
+        </div>
+        <script>
+    // the code below is used to make a button and to take me to the invoice page, and use the quantities that I have put in to the different quantities for S,M,L and later I am going to use these quantities to be put in the invoice.
+        </script>
+        <input type="submit" onclick="displayPurchase();" value="Purchase">
+    </form>
+
+    <h1>Thank You for Shopping!</h1>
+</body>
+
+</html>

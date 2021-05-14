@@ -1,0 +1,15 @@
+/* this is my stylesheet for the invoice */
+body{
+    color: white;
+    background: url(Images/backgroundpicture.jpg);
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
+table {
+    background-color: black;
+}
+h2{
+    text-align: center;
+}
